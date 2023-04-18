@@ -1,10 +1,19 @@
 package Jabank;
 
 public class Conta {
-    double saldo;
-    int agencia;
-    int numero;
-    String titular;
+    private double saldo;
+    private int agencia;
+    private int numero;
+    private Cliente titular; /* instância dinâmica */
+    private static int total; /* instância estática */
+
+    public Conta(int agencia,int numero) {
+        total++;
+        System.out.println("total de contas: " + Conta.total);
+        this.agencia = agencia;
+        this.numero = numero;
+        System.out.println("Conta: " + this.numero + "criada!");
+    }
 
     public void depositar(double valor){
         this.saldo += valor;
@@ -26,5 +35,21 @@ public class Conta {
             return true;
         }
         return false;
-    }    
+    }
+    
+    public int getAgencia() {
+        return this.agencia;
+    }
+
+    public void setTitular(Cliente titular) {
+        this.titular = titular;
+    }
+
+    public Cliente getTitular() {
+        return titular;
+    }
+
+    public static int getTotal() {
+        return Conta.total;
+    }
 }
